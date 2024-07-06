@@ -35,6 +35,9 @@ package pl.asie.lib.util;
  * Change Log:
  * </p>
  * <ul>
+ *  <li>decodeToObject was functionally removed in AsieLib v0.5.0 in order
+ *   to address the Bleeding Pipe security vulnerability which can
+ *   be caused by using an ObjectInputStream, like that method did.</li>
  *  <li>v2.3.7 - Fixed subtle bug when base 64 input stream contained the
  *   value 01111111, which is an invalid base 64 character but should not
  *   throw an ArrayIndexOutOfBoundsException either. Led to discovery of
@@ -51,7 +54,7 @@ package pl.asie.lib.util;
  *   signs) too soon. Also added an option to suppress the automatic decoding
  *   of gzipped streams. Also added experimental support for specifying a
  *   class loader when using the
- *   {@link #decodeToObject(java.lang.String, int, java.lang.ClassLoader)}
+ *   {#decodeToObject(java.lang.String, int, java.lang.ClassLoader)}
  *   method.</li>
  *  <li>v2.3.3 - Changed default char encoding to US-ASCII which reduces the internal Java
  *   footprint with its CharEncoders and so forth. Fixed some javadocs that were
@@ -1300,89 +1303,27 @@ public class Base64
 
 
     /**
-     * Attempts to decode Base64 data and deserialize a Java
-     * Object within. Returns <tt>null</tt> if there was an error.
-     *
-     * @param encodedObject The Base64 data to decode
-     * @return The decoded and deserialized object
-     * @throws NullPointerException if encodedObject is null
-     * @throws java.io.IOException if there is a general error
-     * @throws ClassNotFoundException if the decoded object is of a
-     *         class that cannot be found by the JVM
-     * @since 1.5
+     * This function was removed in AsieLib v0.5.0 in order to
+     * address the Bleeding Pipe security vulnerability which
+     * can be caused by using an ObjectInputStream, like this method did.
      */
+    @Deprecated
     public static Object decodeToObject( String encodedObject )
-    throws java.io.IOException, java.lang.ClassNotFoundException {
+    throws java.lang.UnsupportedOperationException {
         return decodeToObject(encodedObject,NO_OPTIONS,null);
     }
     
 
     /**
-     * Attempts to decode Base64 data and deserialize a Java
-     * Object within. Returns <tt>null</tt> if there was an error.
-     * If <tt>loader</tt> is not null, it will be the class loader
-     * used when deserializing.
-     *
-     * @param encodedObject The Base64 data to decode
-     * @param options Various parameters related to decoding
-     * @param loader Optional class loader to use in deserializing classes.
-     * @return The decoded and deserialized object
-     * @throws NullPointerException if encodedObject is null
-     * @throws java.io.IOException if there is a general error
-     * @throws ClassNotFoundException if the decoded object is of a 
-     *         class that cannot be found by the JVM
-     * @since 2.3.4
+     * This function was removed in AsieLib v0.5.0 in order to
+     * address the Bleeding Pipe security vulnerability which
+     * can be caused by using an ObjectInputStream, like this method did.
      */
+    @Deprecated
     public static Object decodeToObject( 
     String encodedObject, int options, final ClassLoader loader )
-    throws java.io.IOException, java.lang.ClassNotFoundException {
-        
-        // Decode and gunzip if necessary
-        byte[] objBytes = decode( encodedObject, options );
-        
-        java.io.ByteArrayInputStream  bais = null;
-        java.io.ObjectInputStream     ois  = null;
-        Object obj = null;
-        
-        try {
-            bais = new java.io.ByteArrayInputStream( objBytes );
-
-            // If no custom class loader is provided, use Java's builtin OIS.
-            if( loader == null ){
-                ois  = new java.io.ObjectInputStream( bais );
-            }   // end if: no loader provided
-
-            // Else make a customized object input stream that uses
-            // the provided class loader.
-            else {
-                ois = new java.io.ObjectInputStream(bais){
-                    @Override
-                    public Class<?> resolveClass(java.io.ObjectStreamClass streamClass)
-                    throws java.io.IOException, ClassNotFoundException {
-                        Class c = Class.forName(streamClass.getName(), false, loader);
-                        if( c == null ){
-                            return super.resolveClass(streamClass);
-                        } else {
-                            return c;   // Class loader knows of this class.
-                        }   // end else: not null
-                    }   // end resolveClass
-                };  // end ois
-            }   // end else: no custom class loader
-        
-            obj = ois.readObject();
-        }   // end try
-        catch( java.io.IOException e ) {
-            throw e;    // Catch and throw in order to execute finally{}
-        }   // end catch
-        catch( java.lang.ClassNotFoundException e ) {
-            throw e;    // Catch and throw in order to execute finally{}
-        }   // end catch
-        finally {
-            try{ bais.close(); } catch( Exception e ){}
-            try{ ois.close();  } catch( Exception e ){}
-        }   // end finally
-        
-        return obj;
+    throws java.lang.UnsupportedOperationException {
+		throw new java.lang.UnsupportedOperationException("The Base64#decodeToObject method has been removed in order to address the Bleeding Pipe security vulnerability which can be caused by using an ObjectInputStream, like this method did.");
     }   // end decodeObject
     
     
