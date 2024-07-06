@@ -7,9 +7,9 @@
   "credits": "",
   "logoFile": "",
   "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": [ "asiekierka", "Vexatos" ],
+  "url": "https://www.github.com/Doenerstyle/AsieLib",
+  "updateUrl": "https://www.github.com/Doenerstyle/AsieLib/releases",
+  "authorList": [ "asiekierka", "Vexatos", "Doenerstyle" ],
   "parent":"",
   "screenshots": [],
   "dependencies": []
