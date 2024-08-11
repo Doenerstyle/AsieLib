@@ -25,8 +25,19 @@ public abstract class ContainerBase extends ContainerInventory {
 	}
 
 	@Override
-	public void onContainerClosed(EntityPlayer par1EntityPlayer) {
-		super.onContainerClosed(par1EntityPlayer);
+	public void onContainerClosed(EntityPlayer player) {
+		final InventoryPlayer inventoryPlayer = player.inventory;
+		if(inventoryPlayer.getItemStack() != null) {
+			player.dropPlayerItemWithRandomChoice(inventoryPlayer.getItemStack(), false);
+			inventoryPlayer.setItemStack(null);
+		}
 		this.entity.closeInventory();
+		if(((TileEntityInventory) this.entity).getInventoryName().equals("Showcase")) {
+			try {
+				((TileEntityInventory) this.entity).getClass().getField("numUsingPlayers").setInt(((TileEntityInventory) this.entity), 0);
+			} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {}
+			
+			this.entity.getWorldObj().markBlockForUpdate(entity.xCoord, entity.yCoord, entity.zCoord);
+		}
 	}
 }
