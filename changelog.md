@@ -1,3 +1,15 @@
+==== 0.5.1 ====
+
+  * ADDED: Added a Simplified Chinese localization (thanks @M3MEMonster)
+  * FIXED: Statues Mod: Fixed the Showcase lid not closing (asiekierka/Statues#15) (thanks to @TCLProject's [StatuesMod Fix](https://modrinth.com/mod/statuesmodfix) for the fix)
+  * FIXED: Fixed potential issues with other blocks that have inventories that use AsieLib (thanks @TCLProject)
+  * CHANGED: AsieLib no longer supports Java 6, which really shouldn't cause any problems.
+
+==== 0.5.0 ====
+
+  * FIXED: Fixed the Bleeding Pipe security vulnerability by simply removing the affected method.
+    - See README for more details.
+
 ==== 0.4.9 ====
 
   * CHANGED: Increased precision of sound positions.
