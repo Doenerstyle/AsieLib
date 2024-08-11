@@ -1,0 +1,8 @@
+commands.realname.usage=/realname <nickname>
+commands.realname.is=这个人的真名是%s
+commands.realname.isNot=这个人没有设置真名!
+commands.me.usage=/me <...>
+commands.nick.usage=/nick <nickname> (留空移除昵称)
+commands.nick.usage.op=/nick [target] <nickname> (留空移除昵称)
+commands.nick.done=昵称修改为%s
+item.asielib.unknown.name=未知
