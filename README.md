@@ -22,7 +22,7 @@ If AsieLib is the only affected mod that you're using, switching to this fork sh
 
 I am not planning to further update this mod.
 
-However, you're free to open issues if you encounter bugs or incompatibilities/crashes and PRs are always welcome, including new/updated localization files!
+**However**, please open issues if you encounter bugs or incompatibilities/crashes and PRs are always welcome, including new/updated localization files!
 
 ## License
 
