@@ -32,7 +32,7 @@ public abstract class ContainerBase extends ContainerInventory {
 			inventoryPlayer.setItemStack(null);
 		}
 		this.entity.closeInventory();
-		if(((TileEntityInventory) this.entity).getInventoryName().equals("Showcase")) {
+		if(this.entity instanceof TileEntityInventory && ((TileEntityInventory) this.entity).getInventoryName() != null && ((TileEntityInventory) this.entity).getInventoryName().equals("Showcase")) {
 			try {
 				((TileEntityInventory) this.entity).getClass().getField("numUsingPlayers").setInt(((TileEntityInventory) this.entity), 0);
 			} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {}

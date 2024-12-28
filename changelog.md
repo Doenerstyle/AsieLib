@@ -1,3 +1,7 @@
+==== 0.5.2 ====
+
+  * FIXED: Added safeguards to prevent crashes to the "Fixed potential issues" code implemented in v0.5.1.
+
 ==== 0.5.1 ====
 
   * ADDED: Added a Simplified Chinese localization (thanks @M3MEMonster)
